@@ -93,19 +93,17 @@
      <main>
        <div id="content">
          <div class="innertube">
-           <h2>Consultar materias oferecidas pelo departamento</h2>
+           <h2>Reconhecimento</h2>
            <p>
-             <form action="viewMateriaDepartamento.php" method="post">
+             <form action="viewReconhecimento.php" method="post">
 
-             Departamento(sigla): <input type="text" name="departamento"/><br>
-             ou <br>
-             Disciplina(sigla):  <input type="text" name="disciplina"/><br>
+             Curso(sigla): <input type="text" name="curso"/><br>
              <input type="submit" value="Enviar" name="submit">
 
              </form>
 
              <?php
-             function view_materias_do_depto(){
+             function view_reconhecimento(){
 
                    $host     = "localhost";
                    $port     = 3306;
@@ -117,9 +115,8 @@
                    $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
                        or die ('Could not connect to the database server' . mysqli_connect_error());
 
-                       $siglaDep =  $_POST["departamento"];
-                       $siglaDisc =  $_POST["disciplina"];
-                       $sql = "SELECT * FROM view_materias_do_depto where view_materias_do_depto.siglaDisciplina = '$siglaDisc' or view_materias_do_depto.siglaDepartamento = '$siglaDep';";
+                       $sigla =  $_POST["curso"];
+                       $sql = "SELECT * FROM view_reconhecimento where view_reconhecimento.sigla_curso = '$sigla';";
 
                        $result = $con->query($sql);
                        echo "<br>";
@@ -129,30 +126,23 @@
                        if ($result->num_rows > 0) {
                            // output data of each row
                            echo "<table border=3>";
-                           echo "<th> SiglaDisciplina </th> <th>NomeDisciplina</th> <th>NomeDepartamento</th> <th>SiglaDepartamento</th>";
+                           echo "<th>Sigla Curso</th> <th>Num Capes</th> <th>Data Inicio</th>";
 
                            while($row = $result->fetch_assoc()) {
                              echo "<tr>";
                                echo "<td>" ;
-                               echo  $row["siglaDisciplina"];
+                               echo  $row["sigla_curso"];
                                echo "</td>";
                                echo "<td>" ;
-                               echo $row["nomeDisciplina"];
+                               echo $row["num_capes"];
                                echo "</td>";
                                echo "<td>" ;
-                               echo $row["nomeDepartamento"];
-                               echo "</td>";
-                               echo "<td>" ;
-                               echo $row["siglaDepartamento"];
+                               echo $row["data_inicio"];
                                echo "</td>";
                              echo "</tr>";
                            }
 
-                       echo "</table>";
-                       }
-                       else {
-                          echo "Não encontrado";
-
+                           echo "</table>";
                        }
 
                        $con->close();
@@ -161,7 +151,7 @@
 
              if(isset($_POST['submit']))
              {
-                view_materias_do_depto();
+                view_reconhecimento();
              }
   ?>
 
@@ -172,26 +162,21 @@
        </div>
      </main>
 
-     <?php
-       $cpf = $_GET["cpf"];
-      ?>
+
 
      <nav id="nav">
-     <div class="innertube">
-     <h2>Aluno</h2>
-     <ul><a href= http://localhost/my_site/Index.php>Sair</a></ul>
-     <ul><a href= http://localhost/my_site/alunoIndex.php?cpf=<?php echo $cpf; ?>>Home</a></ul>
+       <div class="innertube">
+         <h2>Docente</h2>
+         <ul><a href= http://localhost/my_site/Index.php>Sair</a></ul>
+         <ul><a href= http://localhost/my_site/docenteIndex.php>Home</a></ul>
          <h3>Cadastros</h3>
          <ul>
-           <li><a href="http://localhost/my_site/inscreverTurma.php?cpf=<?php echo $cpf; ?>">Inscrição Turma</a></li>
-           <li><a href="http://localhost/my_site/criarDepartamento.php">#</a></li>
-           <li><a href="http://localhost/my_site/criarDisciplina.php">#</a></li>
-           <li><a href="http://localhost/my_site/criarCurso.php">#</a></li>
-           <li><a href="http://localhost/my_site/criarReconhecimento.php">#</a></li>
+               <li><a href="http://localhost/my_site/viewReconhecimento.php">Reconhecimento</a></li>
+
          </ul>
-         <h3>Consultas</h3>
+         <h3>Left heading</h3>
          <ul>
-           <li><a href="http://localhost/my_site/viewMateriaDepartamento.php?cpf=<?php echo $cpf; ?>">Materias Departamento</a></li>
+           <li><a href="#">Link 1</a></li>
            <li><a href="#">Link 2</a></li>
            <li><a href="#">Link 3</a></li>
            <li><a href="#">Link 4</a></li>
@@ -207,7 +192,7 @@
          </ul>
        </div>
      </nav>
-
+     
    </div>
  </body>
 </html>

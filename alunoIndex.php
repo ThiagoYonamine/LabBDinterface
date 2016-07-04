@@ -109,11 +109,12 @@
       <nav id="nav">
         <div class="innertube">
           <h2>Aluno</h2>
-          <ul><a href= http://localhost/my_site/index.php>Home</a></ul>
+					<ul><a href= http://localhost/my_site/Index.php>Sair</a></ul>
+          <ul><a href= http://localhost/my_site/alunoIndex.php?cpf=<?php echo $cpf; ?>>Home</a></ul>
           <h3>Cadastros</h3>
           <ul>
             <li><a href="http://localhost/my_site/inscreverTurma.php?cpf=<?php echo $cpf; ?>">Inscrição Turma</a></li>
-            <li><a href="http://localhost/my_site/criarDepartamento.php">Dados Pessoais</a></li>
+            <li><a href="http://localhost/my_site">#</a></li>
             <li><a href="http://localhost/my_site/criarDisciplina.php">#</a></li>
             <li><a href="http://localhost/my_site/criarCurso.php">#</a></li>
             <li><a href="http://localhost/my_site/criarReconhecimento.php">#</a></li>
